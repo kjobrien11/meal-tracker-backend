@@ -1,7 +1,6 @@
 package com.example.meal_tracker.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -9,11 +8,11 @@ import lombok.ToString;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "MealFood")
+@Table(name = "MealDetails")
 @Getter
 @Setter
 @ToString
-public class MealFood {
+public class MealDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

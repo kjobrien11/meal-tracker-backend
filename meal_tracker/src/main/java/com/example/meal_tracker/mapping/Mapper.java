@@ -3,10 +3,10 @@ package com.example.meal_tracker.mapping;
 import com.example.meal_tracker.dto.FoodConsumedDTO;
 import com.example.meal_tracker.dto.FoodDTO;
 import com.example.meal_tracker.dto.MealDTO;
-import com.example.meal_tracker.dto.MealFoodDTO;
+import com.example.meal_tracker.dto.MealDetailsDTO;
 import com.example.meal_tracker.model.Food;
 import com.example.meal_tracker.model.Meal;
-import com.example.meal_tracker.model.MealFood;
+import com.example.meal_tracker.model.MealDetails;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -28,10 +28,10 @@ public class Mapper {
                 food.getFatPerGram());
     }
 
-    public static MealFoodDTO mealFoodToDTO(MealFood mealFood, List<FoodConsumedDTO> foods, BigDecimal totalCalories, BigDecimal totalGrams) {
-        return new MealFoodDTO(
-                mealFood.getMeal().getMealName(),
-                mealFood.getMeal().getDate(),
+    public static MealDetailsDTO mealDetailsToDTO(MealDetails mealDetails, List<FoodConsumedDTO> foods, BigDecimal totalCalories, BigDecimal totalGrams) {
+        return new MealDetailsDTO(
+                mealDetails.getMeal().getMealName(),
+                mealDetails.getMeal().getDate(),
                 totalCalories,
                 totalGrams,
                 foods);

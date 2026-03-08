@@ -2,7 +2,7 @@ package com.example.meal_tracker.dto;
 
 import java.math.BigDecimal;
 
-public record MealFoodRequestDTO(
+public record MealDetailsRequestDTO(
     Integer mealId,
     Integer foodId,
     BigDecimal grams)
