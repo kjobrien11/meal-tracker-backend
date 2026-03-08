@@ -1,25 +1,7 @@
-CREATE TABLE Food (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  calories_per_gram DECIMAL(6,3) NOT NULL,
-  protein_per_gram DECIMAL(6,3) DEFAULT 0,
-  carbs_per_gram DECIMAL(6,3) DEFAULT 0,
-  fats_per_gram DECIMAL(6,3) DEFAULT 0,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+INSERT INTO Food (name, calories_per_gram, created_at)
+VALUES ('Chicken Breast', 1.65, current_timestamp);
 
-CREATE TABLE Meal (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  meal_name VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  date DATE DEFAULT CURRENT_DATE
-);
+INSERT INTO Food (name, calories_per_gram, created_at)
+VALUES ('White Rice', 1.30, current_timestamp);
 
-CREATE TABLE Meal_Food (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  meal_id INT NOT NULL,
-  food_id INT NOT NULL,
-  grams DECIMAL(8,2) NOT NULL,
-  FOREIGN KEY (meal_id) REFERENCES Meal(id) ON DELETE CASCADE,
-  FOREIGN KEY (food_id) REFERENCES Food(id)
-);
+INSERT INTO Meal (meal_name, date, created_at) VALUES ('Lunch', CURRENT_DATE, current_timestamp);

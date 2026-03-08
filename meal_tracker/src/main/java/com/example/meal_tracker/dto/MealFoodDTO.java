@@ -1,14 +1,13 @@
 package com.example.meal_tracker.dto;
 
-import com.example.meal_tracker.model.FoodConsumedDTO;
-
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 public record MealFoodDTO(
     String mealName,
     LocalDate date,
-    double totalCalories,
-    double totalGrams,
+    BigDecimal totalCalories,
+    BigDecimal totalGrams,
     List<FoodConsumedDTO> foods)
 {}

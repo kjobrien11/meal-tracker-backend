@@ -16,14 +16,8 @@ public class MealFoodController {
     private MealFoodService mealFoodService;
 
     @GetMapping("/{id}")
-    public List<MealFoodDTO> findByMealId(@PathVariable Integer id) {
+    public MealFoodDTO findByMealId(@PathVariable Integer id) {
         return mealFoodService.findByMealId(id);
-    }
-
-    //TODO: finish implementation
-    @GetMapping("formatted/{id}")
-    public List<MealFoodDTO> findByMealIdFormatted(@PathVariable Integer id) {
-        return null;
     }
 
     @PostMapping

@@ -3,6 +3,7 @@ package com.example.meal_tracker.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "Food")
 @Getter
 @Setter
+@ToString
 public class Food {
 
     @Id
