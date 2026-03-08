@@ -22,42 +22,15 @@ public class MealFoodServiceImpl implements MealFoodService {
     @Override
     public MealFoodDTO findByMealId(Integer mealId) {
         List<MealFood> mealFoods = mealFoodRepository.findAllByMeal_Id(mealId);
-        List<FoodConsumedDTO> foods = deriveFoodConsumedDTO(mealFoods);
-        BigDecimal totalCalories = calculateTotalCalories(foods);
-        BigDecimal totalGrams = calculateTotalGrams(foods);
-        return Mapper.mealFoodToDTO(mealFoods.get(0), foods, totalCalories, totalGrams);
+        MealSummary summary = MealSummaryCalculator.calculateMealSummary(mealFoods);
+        return Mapper.mealFoodToDTO(mealFoods.get(0), summary.getFoods(), summary.getTotalCalories(), summary.getTotalGrams());
     }
 
     @Override
     public MealFoodDTO createMealFood(MealFood mealFood) {
         MealFood mealFoodSaved = mealFoodRepository.save(mealFood);
-        return Mapper.mealFoodToDTO(mealFoodSaved, List.of(), BigDecimal.ZERO, BigDecimal.ZERO);
+        MealSummary summary = MealSummaryCalculator.calculateMealSummary(List.of(mealFoodSaved));
+        return Mapper.mealFoodToDTO(mealFoodSaved, summary.getFoods(), summary.getTotalCalories(), summary.getTotalGrams());
     }
-
-    private List<FoodConsumedDTO> deriveFoodConsumedDTO(List<MealFood> mealFoods) {
-        List<FoodConsumedDTO> foods = new ArrayList<>();
-        for (MealFood mealFood : mealFoods) {
-            BigDecimal calories = mealFood.getGrams().multiply(mealFood.getFood().getCaloriesPerGram());
-            foods.add(new FoodConsumedDTO(Mapper.foodToDTO(mealFood.getFood()), calories, mealFood.getGrams()));
-        }
-        return foods;
-    }
-
-    private BigDecimal calculateTotalCalories(List<FoodConsumedDTO> foodConsumed) {
-        BigDecimal totalCalories = BigDecimal.ZERO;
-        for (FoodConsumedDTO foodConsumedDTO : foodConsumed) {
-            totalCalories = totalCalories.add(foodConsumedDTO.calories());
-        }
-        return totalCalories;
-    }
-
-    private BigDecimal calculateTotalGrams(List<FoodConsumedDTO> foodConsumed) {
-        BigDecimal totalGrams = BigDecimal.ZERO;
-        for (FoodConsumedDTO foodConsumedDTO : foodConsumed) {
-            totalGrams = totalGrams.add(foodConsumedDTO.grams());
-        }
-        return totalGrams;
-    }
-
 
 }
