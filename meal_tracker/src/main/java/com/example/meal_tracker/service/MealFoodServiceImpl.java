@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class MealFoodServiceImpl implements MealFoodService {
@@ -22,10 +21,6 @@ public class MealFoodServiceImpl implements MealFoodService {
 
     @Override
     public MealFoodDTO findByMealId(Integer mealId) {
-//        return mealFoodRepository.findAllByMeal_Id(mealId)
-//                .stream()
-//                .map(Mapper::mealFoodToDTO)
-//                .collect(Collectors.toList());
         List<MealFood> mealFoods = mealFoodRepository.findAllByMeal_Id(mealId);
         List<FoodConsumedDTO> foods = deriveFoodConsumedDTO(mealFoods);
         BigDecimal totalCalories = calculateTotalCalories(foods);
@@ -36,13 +31,7 @@ public class MealFoodServiceImpl implements MealFoodService {
     @Override
     public MealFoodDTO createMealFood(MealFood mealFood) {
         MealFood mealFoodSaved = mealFoodRepository.save(mealFood);
-        return Mapper.mealFoodToDTO(mealFoodSaved, List.of(), new BigDecimal(0), BigDecimal.ZERO);
-    }
-
-    @Override
-    public MealFoodDTO findMealFoodById(Long id) {
-        MealFood mealFoodFound = mealFoodRepository.findById(id).orElse(null);
-        return Mapper.mealFoodToDTO(mealFoodFound , List.of(), new BigDecimal(0), BigDecimal.ZERO);
+        return Mapper.mealFoodToDTO(mealFoodSaved, List.of(), BigDecimal.ZERO, BigDecimal.ZERO);
     }
 
     private List<FoodConsumedDTO> deriveFoodConsumedDTO(List<MealFood> mealFoods) {
@@ -55,7 +44,7 @@ public class MealFoodServiceImpl implements MealFoodService {
     }
 
     private BigDecimal calculateTotalCalories(List<FoodConsumedDTO> foodConsumed) {
-        BigDecimal totalCalories = new BigDecimal(0);
+        BigDecimal totalCalories = BigDecimal.ZERO;
         for (FoodConsumedDTO foodConsumedDTO : foodConsumed) {
             totalCalories = totalCalories.add(foodConsumedDTO.calories());
         }
@@ -63,7 +52,7 @@ public class MealFoodServiceImpl implements MealFoodService {
     }
 
     private BigDecimal calculateTotalGrams(List<FoodConsumedDTO> foodConsumed) {
-        BigDecimal totalGrams = new BigDecimal(0);
+        BigDecimal totalGrams = BigDecimal.ZERO;
         for (FoodConsumedDTO foodConsumedDTO : foodConsumed) {
             totalGrams = totalGrams.add(foodConsumedDTO.grams());
         }
