@@ -1,5 +1,6 @@
 package com.example.meal_tracker.controller;
 
+import com.example.meal_tracker.dto.FoodDTO;
 import com.example.meal_tracker.model.Food;
 import com.example.meal_tracker.repository.FoodRepository;
 import com.example.meal_tracker.service.FoodService;
@@ -17,12 +18,12 @@ public class FoodController {
     private FoodService foodService;
 
     @GetMapping
-    public List<Food> getFoods() {
+    public List<FoodDTO> getFoods() {
         return foodService.getAllFoods();
     }
 
     @PostMapping
-    public Food createFood(@RequestBody Food food) {
+    public FoodDTO createFood(@RequestBody Food food) {
         return foodService.createFood(food);
     }
 }
