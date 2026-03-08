@@ -1,5 +1,6 @@
 package com.example.meal_tracker.controller;
 
+import com.example.meal_tracker.dto.MealFoodDTO;
 import com.example.meal_tracker.model.MealFood;
 import com.example.meal_tracker.service.MealFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +16,18 @@ public class MealFoodController {
     private MealFoodService mealFoodService;
 
     @GetMapping("/{id}")
-    public List<MealFood> findByMealId(@PathVariable Integer id) {
+    public List<MealFoodDTO> findByMealId(@PathVariable Integer id) {
         return mealFoodService.findByMealId(id);
     }
 
     //TODO: finish implementation
     @GetMapping("formatted/{id}")
-    public List<MealFood> findByMealIdFormatted(@PathVariable Integer id) {
+    public List<MealFoodDTO> findByMealIdFormatted(@PathVariable Integer id) {
         return null;
     }
 
     @PostMapping
-    public MealFood createMealFood(@RequestBody MealFood mealFood) {
+    public MealFoodDTO createMealFood(@RequestBody MealFood mealFood) {
         return mealFoodService.createMealFood(mealFood);
     }
 
