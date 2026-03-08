@@ -1,6 +1,7 @@
 package com.example.meal_tracker.controller;
 
 import com.example.meal_tracker.dto.MealFoodDTO;
+import com.example.meal_tracker.dto.MealFoodRequestDTO;
 import com.example.meal_tracker.model.MealFood;
 import com.example.meal_tracker.service.MealFoodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ public class MealFoodController {
     }
 
     @PostMapping
-    public MealFoodDTO createMealFood(@RequestBody MealFood mealFood) {
-        return mealFoodService.createMealFood(mealFood);
+    public MealFoodDTO createMealFood(@RequestBody MealFoodRequestDTO mealFoodRequest) {
+        return mealFoodService.createMealFood(mealFoodRequest);
     }
 
 }
