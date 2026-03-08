@@ -26,11 +26,11 @@ public class Food {
     @Column(name = "protein_per_gram", nullable = true, precision = 6, scale = 3)
     private BigDecimal proteinPerGram;
 
-    @Column(name = "fat_per_gram", nullable = true, precision = 6, scale = 3)
-    private BigDecimal fatPerGram;
-
     @Column(name = "carbs_per_gram", nullable = true, precision = 6, scale = 3)
     private BigDecimal carbsPerGram;
+
+    @Column(name = "fat_per_gram", nullable = true, precision = 6, scale = 3)
+    private BigDecimal fatPerGram;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();

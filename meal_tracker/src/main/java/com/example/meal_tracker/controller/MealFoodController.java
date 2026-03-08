@@ -19,6 +19,12 @@ public class MealFoodController {
         return mealFoodService.findByMealId(id);
     }
 
+    //TODO: finish implementation
+    @GetMapping("formatted/{id}")
+    public List<MealFood> findByMealIdFormatted(@PathVariable Integer id) {
+        return null;
+    }
+
     @PostMapping
     public MealFood createMealFood(@RequestBody MealFood mealFood) {
         return mealFoodService.createMealFood(mealFood);
