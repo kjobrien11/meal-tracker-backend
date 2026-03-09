@@ -7,6 +7,8 @@ import com.example.meal_tracker.service.MealDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/meal-details")
 public class MealDetailsController {
@@ -22,6 +24,11 @@ public class MealDetailsController {
     @PostMapping
     public FoodConsumedDTO createMealFood(@RequestBody MealDetailsRequestDTO mealFoodRequest) {
         return mealDetailsService.createMealFood(mealFoodRequest);
+    }
+
+    @PostMapping("/batch")
+    public List<FoodConsumedDTO> createMealFood(@RequestBody List<MealDetailsRequestDTO> mealFoodRequest) {
+        return mealDetailsService.createMealFoodFromList(mealFoodRequest);
     }
 
 }

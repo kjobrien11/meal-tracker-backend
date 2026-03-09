@@ -13,6 +13,7 @@ import com.example.meal_tracker.repository.MealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,7 @@ public class MealDetailsServiceImpl implements MealDetailsService {
         Optional<Meal> meal = mealRepository.findById(mealFoodRequest.mealId());
         Optional<Food> food = foodRepository.findById(mealFoodRequest.foodId());
 
+        //TODO add proper response when null
         if (meal.isEmpty() || food.isEmpty()) {
             return null;
         }
@@ -51,5 +53,15 @@ public class MealDetailsServiceImpl implements MealDetailsService {
 
         MealDetails mealDetailsSaved = mealDetailsRepository.save(mealDetails);
         return MealSummaryCalculator.calculateFoodAddedSummary(mealDetailsSaved);
+    }
+
+    @Override
+    public List<FoodConsumedDTO> createMealFoodFromList(List<MealDetailsRequestDTO> mealFoodRequest) {
+        List<FoodConsumedDTO> foodConsumedDTOList = new ArrayList<>();
+
+        for (MealDetailsRequestDTO mealFoodRequestDTO : mealFoodRequest) {
+            foodConsumedDTOList.add(createMealFood(mealFoodRequestDTO));
+        }
+        return foodConsumedDTOList;
     }
 }
