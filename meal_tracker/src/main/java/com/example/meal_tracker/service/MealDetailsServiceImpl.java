@@ -1,5 +1,6 @@
 package com.example.meal_tracker.service;
 
+import com.example.meal_tracker.dto.FoodConsumedDTO;
 import com.example.meal_tracker.dto.MealDetailsDTO;
 import com.example.meal_tracker.dto.MealDetailsRequestDTO;
 import com.example.meal_tracker.mapping.Mapper;
@@ -35,7 +36,7 @@ public class MealDetailsServiceImpl implements MealDetailsService {
     }
 
     @Override
-    public MealDetailsDTO createMealFood(MealDetailsRequestDTO mealFoodRequest) {
+    public FoodConsumedDTO createMealFood(MealDetailsRequestDTO mealFoodRequest) {
         Optional<Meal> meal = mealRepository.findById(mealFoodRequest.mealId());
         Optional<Food> food = foodRepository.findById(mealFoodRequest.foodId());
 
@@ -49,7 +50,6 @@ public class MealDetailsServiceImpl implements MealDetailsService {
         mealDetails.setGrams(mealFoodRequest.grams());
 
         MealDetails mealDetailsSaved = mealDetailsRepository.save(mealDetails);
-        MealSummary summary = MealSummaryCalculator.calculateMealSummary(List.of(mealDetailsSaved));
-        return Mapper.mealDetailsToDTO(mealDetailsSaved, summary.getFoods(), summary.getTotalCalories(), summary.getTotalGrams());
+        return MealSummaryCalculator.calculateFoodAddedSummary(mealDetailsSaved);
     }
 }

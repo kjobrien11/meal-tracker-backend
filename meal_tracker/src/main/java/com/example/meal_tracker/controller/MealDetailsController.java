@@ -1,5 +1,6 @@
 package com.example.meal_tracker.controller;
 
+import com.example.meal_tracker.dto.FoodConsumedDTO;
 import com.example.meal_tracker.dto.MealDetailsDTO;
 import com.example.meal_tracker.dto.MealDetailsRequestDTO;
 import com.example.meal_tracker.service.MealDetailsService;
@@ -19,7 +20,7 @@ public class MealDetailsController {
     }
 
     @PostMapping
-    public MealDetailsDTO createMealFood(@RequestBody MealDetailsRequestDTO mealFoodRequest) {
+    public FoodConsumedDTO createMealFood(@RequestBody MealDetailsRequestDTO mealFoodRequest) {
         return mealDetailsService.createMealFood(mealFoodRequest);
     }
 
