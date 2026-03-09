@@ -10,6 +10,7 @@ import com.example.meal_tracker.model.MealDetails;
 import com.example.meal_tracker.repository.FoodRepository;
 import com.example.meal_tracker.repository.MealDetailsRepository;
 import com.example.meal_tracker.repository.MealRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,7 @@ public class MealDetailsServiceImpl implements MealDetailsService {
     }
 
     @Override
+    @Transactional
     public FoodConsumedDTO createMealFood(MealDetailsRequestDTO mealFoodRequest) {
         Optional<Meal> meal = mealRepository.findById(mealFoodRequest.mealId());
         Optional<Food> food = foodRepository.findById(mealFoodRequest.foodId());
@@ -56,6 +58,7 @@ public class MealDetailsServiceImpl implements MealDetailsService {
     }
 
     @Override
+    @Transactional
     public List<FoodConsumedDTO> createMealFoodFromList(List<MealDetailsRequestDTO> mealFoodRequest) {
         List<FoodConsumedDTO> foodConsumedDTOList = new ArrayList<>();
 
