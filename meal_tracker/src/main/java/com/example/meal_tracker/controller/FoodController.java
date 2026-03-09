@@ -2,7 +2,6 @@ package com.example.meal_tracker.controller;
 
 import com.example.meal_tracker.dto.FoodDTO;
 import com.example.meal_tracker.model.Food;
-import com.example.meal_tracker.repository.FoodRepository;
 import com.example.meal_tracker.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

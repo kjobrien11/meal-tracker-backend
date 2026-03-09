@@ -1,10 +1,13 @@
 package com.example.meal_tracker.controller;
 
+import com.example.meal_tracker.dto.FoodConsumedDTO;
 import com.example.meal_tracker.dto.MealDetailsDTO;
 import com.example.meal_tracker.dto.MealDetailsRequestDTO;
 import com.example.meal_tracker.service.MealDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/meal-details")
@@ -19,8 +22,13 @@ public class MealDetailsController {
     }
 
     @PostMapping
-    public MealDetailsDTO createMealFood(@RequestBody MealDetailsRequestDTO mealFoodRequest) {
+    public FoodConsumedDTO createMealFood(@RequestBody MealDetailsRequestDTO mealFoodRequest) {
         return mealDetailsService.createMealFood(mealFoodRequest);
+    }
+
+    @PostMapping("/batch")
+    public List<FoodConsumedDTO> createMealFood(@RequestBody List<MealDetailsRequestDTO> mealFoodRequest) {
+        return mealDetailsService.createMealFoodFromList(mealFoodRequest);
     }
 
 }

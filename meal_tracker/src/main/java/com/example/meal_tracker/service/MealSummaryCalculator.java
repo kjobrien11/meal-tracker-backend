@@ -26,4 +26,10 @@ public class MealSummaryCalculator {
         }
         return new MealSummary(foods, totalCalories, totalGrams);
     }
+
+    public static FoodConsumedDTO calculateFoodAddedSummary(MealDetails mealDetails) {
+        BigDecimal grams = mealDetails.getGrams();
+        BigDecimal calories = grams.multiply(mealDetails.getFood().getCaloriesPerGram());
+        return new FoodConsumedDTO(Mapper.foodToDTO(mealDetails.getFood()), calories, grams);
+    }
 }

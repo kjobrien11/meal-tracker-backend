@@ -24,3 +24,11 @@ VALUES ('Roasted Sweet Potato Wedges (Cooked in Olive Oil) *ESTIMATE*', 1.0, cur
 
 
 INSERT INTO Meal (meal_name, date, created_at) VALUES ('Lunch', CURRENT_DATE, current_timestamp);
+
+INSERT INTO Dish (name, created_at) VALUES ('Ground Turkey and Sweet Potatoes', current_timestamp );
+
+INSERT INTO dish_contents (dish_id, food_id, created_at)
+VALUES (1, 6, current_timestamp);
+
+INSERT INTO dish_contents (dish_id, food_id, created_at)
+VALUES (1, 8, current_timestamp);

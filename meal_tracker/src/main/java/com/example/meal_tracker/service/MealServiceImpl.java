@@ -4,6 +4,7 @@ import com.example.meal_tracker.dto.MealDTO;
 import com.example.meal_tracker.mapping.Mapper;
 import com.example.meal_tracker.model.Meal;
 import com.example.meal_tracker.repository.MealRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,7 @@ public class MealServiceImpl implements MealService {
     }
 
     @Override
+    @Transactional
     public MealDTO createMeal(Meal meal) {
         Meal mealSaved =  mealRepository.save(meal);
         return Mapper.mealToDTO(mealSaved);
