@@ -8,11 +8,11 @@ import lombok.ToString;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "MealDetails")
+@Table(name = "meal_contents")
 @Getter
 @Setter
 @ToString
-public class MealDetails {
+public class MealContents {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

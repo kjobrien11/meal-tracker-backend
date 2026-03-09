@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public record MealDetailsDTO(
+public record MealContentsDTO(
     String mealName,
     LocalDate date,
     BigDecimal totalCalories,
