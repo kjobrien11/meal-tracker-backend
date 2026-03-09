@@ -6,8 +6,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Entity
-@Table(name = "DishContents")
+@Table(name = "dish_contents")
 @Setter
 @Getter
 @ToString
@@ -24,5 +26,8 @@ public class DishContents {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "food_id", nullable = false)
     private Food food;
+
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 }
