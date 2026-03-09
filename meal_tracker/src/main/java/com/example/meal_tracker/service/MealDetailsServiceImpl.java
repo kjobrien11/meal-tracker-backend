@@ -39,9 +39,9 @@ public class MealDetailsServiceImpl implements MealDetailsService {
 
     @Override
     @Transactional
-    public FoodConsumedDTO createMealFood(MealDetailsRequestDTO mealFoodRequest) {
-        Optional<Meal> meal = mealRepository.findById(mealFoodRequest.mealId());
-        Optional<Food> food = foodRepository.findById(mealFoodRequest.foodId());
+    public FoodConsumedDTO addMealDetails(MealDetailsRequestDTO mealDetailsRequest) {
+        Optional<Meal> meal = mealRepository.findById(mealDetailsRequest.mealId());
+        Optional<Food> food = foodRepository.findById(mealDetailsRequest.foodId());
 
         //TODO add proper response when null
         if (meal.isEmpty() || food.isEmpty()) {
@@ -51,7 +51,7 @@ public class MealDetailsServiceImpl implements MealDetailsService {
         MealDetails mealDetails = new MealDetails();
         mealDetails.setMeal(meal.get());
         mealDetails.setFood(food.get());
-        mealDetails.setGrams(mealFoodRequest.grams());
+        mealDetails.setGrams(mealDetailsRequest.grams());
 
         MealDetails mealDetailsSaved = mealDetailsRepository.save(mealDetails);
         return MealSummaryCalculator.calculateFoodAddedSummary(mealDetailsSaved);
@@ -59,11 +59,11 @@ public class MealDetailsServiceImpl implements MealDetailsService {
 
     @Override
     @Transactional
-    public List<FoodConsumedDTO> createMealFoodFromList(List<MealDetailsRequestDTO> mealFoodRequest) {
+    public List<FoodConsumedDTO> addMealDetailsFromList(List<MealDetailsRequestDTO> mealDetailsRequest) {
         List<FoodConsumedDTO> foodConsumedDTOList = new ArrayList<>();
 
-        for (MealDetailsRequestDTO mealFoodRequestDTO : mealFoodRequest) {
-            foodConsumedDTOList.add(createMealFood(mealFoodRequestDTO));
+        for (MealDetailsRequestDTO mealDetailsRequestDTO : mealDetailsRequest) {
+            foodConsumedDTOList.add(addMealDetails(mealDetailsRequestDTO));
         }
         return foodConsumedDTOList;
     }

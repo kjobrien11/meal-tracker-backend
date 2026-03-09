@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface MealDetailsService {
     public MealDetailsDTO findByMealId(Integer mealId);
-    public FoodConsumedDTO createMealFood(MealDetailsRequestDTO mealFoodRequest);
-    public List<FoodConsumedDTO> createMealFoodFromList(List<MealDetailsRequestDTO> mealFoodRequest);
+    public FoodConsumedDTO addMealDetails(MealDetailsRequestDTO mealDetailsRequest);
+    public List<FoodConsumedDTO> addMealDetailsFromList(List<MealDetailsRequestDTO> mealDetailsRequest);
 }

@@ -22,13 +22,13 @@ public class MealDetailsController {
     }
 
     @PostMapping
-    public FoodConsumedDTO createMealFood(@RequestBody MealDetailsRequestDTO mealFoodRequest) {
-        return mealDetailsService.createMealFood(mealFoodRequest);
+    public FoodConsumedDTO addMealDetails(@RequestBody MealDetailsRequestDTO mealDetailsRequest) {
+        return mealDetailsService.addMealDetails(mealDetailsRequest);
     }
 
     @PostMapping("/batch")
-    public List<FoodConsumedDTO> createMealFood(@RequestBody List<MealDetailsRequestDTO> mealFoodRequest) {
-        return mealDetailsService.createMealFoodFromList(mealFoodRequest);
+    public List<FoodConsumedDTO> addMealDetails(@RequestBody List<MealDetailsRequestDTO> mealDetailsRequest) {
+        return mealDetailsService.addMealDetailsFromList(mealDetailsRequest);
     }
 
 }
